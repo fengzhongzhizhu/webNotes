@@ -1,0 +1,201 @@
+1）.margin-top,margin-bottom不能正常显示时
+一.有时会遇到外层中的子层使用margin-top不管用的情况；这里我们需要在子层的前后加上一个
+   div{height:0;overflow:hidden;}
+例
+CSS样式表中：
+#box {background-color:#eee;}
+#box p {margin-top: 20px;margin-bottom: 20px;text-align:center;}
+解决方法：在P标签前后各加2个空的div：<divstyle="height:0;overflow:hidden"></div>
+二.网页中头部，中部，底部的居底部有时给个margin-bottom:10px;不管用也是要给个清除属性的.clear{clear:both;font-size:0;line-height:0;}在底部<div id="footer"></div>下加个<div></div>
+2）.div层中高度自适应问题
+    网页前端科技人员在设计网页时不可能知道客户在要他们自己的网站内容页里加多少文字或图片内容
+    这时我们就不能规定div层的高度，为此应写成min-height:200px;height:auto!important;height:
+    200px;overflow:visible;这样ie7,ff,ie6浏览器的高度自适应问题就解决了，这些在
+    http://www.xueshengshu.com/网站中用到最多了。
+3）.div层中子层的居底部对齐问题
+    div中的定位问题有很多也很麻烦，但弄懂了就OK了，在一个大的div层中如何让子层的内容居底部 
+    对齐就涉及到了position定位问题；
+    例
+    div层#box{position:relative;border:1px solidred;width:600px;hegiht:400px;}
+    div子层#box .wrap{position:absolute;bottom:0;border:1px dashedblue;width:200px;height:
+    100px},最近写的网站中http://www.msgc.net.cn/就用到了
+4）.div层中清除clear属性的一小部分应用
+   在div中一个大的层里面有很多子层，若是加上边框在ie7、ie6中或许会正常显示，但是在ff中可能
+   只会成一条线了，此时在最外层的后面加上<div style="clear:both"></div>或者设 .wrapfix:after{
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+ }后在每个浮动外框调用wrapfix；http://www.xueshengshu.com学生书网里用到最多了。
+5）.解决IE8下div移位、错位等兼容性问题 
+   在<head>标签后面的第一句话加上<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />就OK了
+6）.单行文字居中与字体样式问题
+   在div中一个层中只有一行文字，要让这层中的文字居中，可设line-height的高度和层的高度一样，注意这一层中的文字不能换行，此外，设了line-height时再给定字体样式font:bold 14px "宋体";这时要把font:bold 14px "宋体";放在line-height的前面，否则字体样式不显示文字也不居中；或者将font:bold 14px "宋体";改成font-size:16px;font-weight:bold;font-family:"宋体";就OK了。
+7）.鼠标滑上去的特殊效果
+ 往往为了达到显眼的效果，我们会写到一些好看的效果，方法一在样式表中写：ul li a{border:1px solid red;}ul li a:hoverimg{filter:alpha(opacity=40在ul标签中调用即可方法二：在样式表中写上：.hover img{filter:alpha(opacity=40);}在div中调用onmouseover="this.className='hover'"onmouseout="this.className=this.classtype"即可
+8）.IE6中高度不对问题
+ 今天在div中给定了高度为1px,其它浏览器显示正常，可是ie6中显示的高度就不对了，这时我给样式表中加了个font-size:0px;line-height:0px;就好了
+9）.ul在外框里margin-top不起作用的问题
+ 在div大框子里用了ul作导航的时候为了合ul层居中显示，设ul的样式表为margin-top:-15px不起作用了，此时应该将div大框设定高度后给个line-height与height一样的高度，ul层就自动居中了。
+例如http://www.hopes-home.cn/main.aspx
+10）.ff中margin-top有时不起作用的问题
+ 今天头晕脑涨的把这问题给解决了，这几天写标网都有累似问题，可是一直都是换个写法解决的，今天的这个办法也不只可行试试还是可以的，在一个div外框层中给个宽度例如，#div_wrap{width:280px;height:100%;}
+其次在这个框子里设一个.div_top{widh:100%;font:bold12px "宋体";height:24px;line-height:24px;} 
+.div_center{border:1px solid#dbdbdb;border-top:none;background:#fff;min-height:460px !important;height:auto!important;height:460px;overflow:visible;}
+ 最后在这个div_center里套个ul li时经常会在ff中出问题，也就是在div_top与div_center中莫名的多了几个像素的空格，这时给ul样式表设个display:inline-table即可；
+11）.list-style-image的用法
+div中经常用到新闻列表前面有图标的样式，有两种简单的方法
+一.可以写成ul.menu{width:100%;}  ul.menuli{background:url(em_img/small_icon.jpg) 5px center no-repeat;list-style-position:inside;padding-left:18px;}即可在各浏览器正常显示
+二. 可以设ul.menu{width:80%;}   ul.menuli{list-style-image:url(em_img/small_icon.jpg); }
+此时新闻列表前的小图标即可在ie6，ie7，ie8,ff中都正常显示但，ie6需要不断的刷新才能正常显示小图标；
+ 
+12）.
+IE6 li:hover兼容问题
+<scripttype="text/javascript"><!--//--><![CDATA[//><!--
+sfHover =function() {
+var sfEls = document.getElementById("nav").getElementsByTagName_r("LI");
+for (var i=0; i<sfEls.length; i++) {
+sfEls[i].onmouseover=function() {
+this.className+=" sfhover";
+}
+sfEls[i].onmouseout=function() {
+this.className=this.className.replace(new RegExp(" sfhover\b"), "");
+}
+}
+}
+if (window.attachEvent) window.attachEvent("onload", sfHover);
+//--><!］>
+</script>
+13）.ie6下支持position:absolute;
+最近写一个短信平台的页面用到的底部固定的层，在ff和ie7,ie8下都是好的，可到ie6下就不行了，转了整个地球终于出来了：
+background-attachment:fixed; }
+ #bottomNav {background-color:#096; z-index:999; position:fixed; bottom:0; left:0;width:100%; _position:absolute;
+ _top: expression_r(documentElement.scrollTop+ documentElement.clientHeight-this.offsetHeight); overflow:visible; }
+样式表中调用即可！详细请见“高度自适应屏幕尺寸！”
+14）.border:none;与border:0;的区别
+1.性能差异
+【border:0;】把border设为“0”像素虽然在页面上看不见，但按border默认值理解，浏览器依然对border-width/border-color进行了渲染，即已经占用了内存值。
+【border:none;】把border设为“none”即没有，浏览器解析“none”时将不作出渲染动作，即不会消耗内存值。
+2.兼容性差异
+兼容性差异只针对浏览器IE6、IE7与标签button、input而言，在win、win7、vista 的XP主题下均会出现此情况。
+【border:none;】当border为“none”时似乎对IE6/7无效边框依然存在
+【border:0;】当border为“0”时，感觉比“none”更有效，所有浏览器都一致把边框隐藏
+总结：
+1. 对比border:0;与border:none;之间的区别在于有渲染和没渲染，感觉他们和display:none;与visibility:hidden;的关系类似，而对于border属性的渲染性能对比暂时没找测试的方法，虽然认为他们存在渲染性能上的差异但也只能说是理论上。
+2. 如何让border:none;实现全兼容？只需要在同一选择符上添加背景属性即可
+对于border:0;与border:none;个人更向于使用,border:none;，因为border:none;毕竟在性能消耗没有争议，而且兼容性可用背景属性解决不足以成为障碍。
+15）.ie下。png的图片不会有灰色背景出现
+注：首推PNG8，即使在IE6中它的透明背景也能被正确显示。PNG8使用的技巧是，输出时把“杂边”设置为和背景接近的颜色
+1.几经周折终于把ie6下.png有色图问题解决了，原来IE6.0原本支持png8的索引色透明度，但不支持png或8位以上的alpha 透明度，在IE6.0下，非PNG8格式的透明图片部分，会显示为淡淡的灰绿色。在网页中头部加个代码<!--[if IE 6]>
+<script type="text/javascript" src="http://zmingcx.com/wp-content/themes/HotNewspro/js/pngfix.js"></script>
+<script src="js/DD_belatedPNG.js"></script>
+<script>
+DD_belatedPNG.fix('.png_bg');
+</script>
+<![endif]-->即可！
+2.在样式里写#png-container{
+width: 300px;
+height: 150px;
+background: none;
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../imgs/logoB.png',sizingMethod='crop');border:1px solid red;display:block;
+}到页面中调用<div id="png-container ">
+<img src="imgs/logoB.png" alt="" />
+</div>注意图片要保存为png-8格式的才行！
+3. 将背景图片写成style="_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../imgs/dialog/da_fr.png',sizingMethod='scale');background:url(../imgs/dialog/da_fr.png) no-repeat!important;_background: none transparent scroll repeat 0% 0%;);"即可。ff、ie7、ie6下都不会有灰色背景了,这个怎么又失灵了，唉害得我纠结了好几天！。
+16）.表格自动换行
+唉，最讨厌表格了，可是编辑软件平台有很多报表要用到表格来写，搞的我郁闷半死，要想让表格里td的内容到了一定宽度自动换行就要先设一个全局样式table{table-layout:fixed;}
+td{word-break: break-all; word-wrap:break-word;};              
+17）.iframe高度自适应
+给div加一个样式style="position:relative;"
+再给iframe 加一个样式如下，只有把iframe定义成绝对定位后，才能自适应高度
+style="position:absolute; height:100%;"
+18）.ie8下input的bug
+我滴个孩来！一个小的两个input输入框，一个是文本框，一个是按钮，却怎么也接不到一起去，可把我给急坏了，这小问题花了我差不多一下午的时间，纠结半天终于给弄出来了，但不知原因，这么写就对了！
+要定义input{ vertical-align:middle;}即可！
+19）.按钮的链接路径
+编写网页前台时会碰到按钮的链接路径怎么给的问题！只要在button里加个onclick="window.location.href='orderCheck.htm‘"即可！
+<button type="button"onclick="window.location.href='orderCheck.htm'">Add toCart</button>
+20）.图片加alt好处
+网页中<img src=""alt=""/> 中的alt是很重要的，这涉及到网页的亲和力问题（http://www.yixieshi.com/ucd/9345.html），网页中的图片若是不加alt在图片没加载出来的时候会什么信息也看不到，加了alt则在加载不出来图片的时候显示图片的信息便于用户查看信息！
+21）.
+去除chrome浏览器下input和textarea点击选中框
+取消chrome下input和textarea的聚焦边框：
+input,button,select,textarea{outline:none}
+取消chrome下textarea可拖动放大：
+textarea{resize:none}
+最后，写在一起，重置input和textarea的默认样式：
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+ 
+21）.页面中流动条问题
+打开一个空白页面，观察浏览器右侧，会发现IE浏览器会有一段滚动条的槽道，而Firefox浏览器下没有。
+22). 手机, Adroid2.2, 平板电脑, 浏览器, mobile safari
+最近给平板电脑做页面，经历了一番探索，搞定了。
+下面来说说我的解决方案。
+
+
+测试设备：
+   GT-P1000 三星平板电脑（其实为大号手机）
+   操作系统：android2.1
+   浏览器：Mobile Safari/533.1
+   User Agent打印结果：
+       Mozilla/5.0 (Linux; U; Android 2.1;zh-cn; GT-P1000 Build/FROYO) AppleWebKit/533
+.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+
+
+1. 在jsp页面顶上增加以下文档类型声明：
+Java代码 
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">       
+<html xmlns="http://www.w3.org/1999/xhtml">  
+
+
+
+      如果不加上文档类型声明的话，在浏览器里打开页面后，页面会根据移动设备屏幕的大小自动缩放页面，并且当点击输入框时，页面会自动放大，特别难看。加上声明之后，页面会展现原始大小，手指也可以拖动屏幕进行页面放大。
+
+2. 普通的网页字体大小，在移动设备浏览器上看到的效果是字体变小
+所以css的字体大小要做大一点。
+
+我是研究了雅虎移动版的网站：
+http://hk.m.yahoo.com/
+
+23）.页面中流动条问题
+ 
+网页中改变input输入框的背景时，当输入的文字超过一定数字时，背景图片会跑，这时只要限定input的maxlength就行了！
+ 
+24）.input在google浏览器下若用背景图片写并且点击上去有效果的话会掉下来
+解决的办法是将input里的value=""中加一个空格！ 即写成value=" "
+25）.解决ff下面td的换行问题<tablestyle="table-layout:fixed" width="200">
+<tr>
+<td width="25%" style="word-break :break-all; overflow:hidden;">abcdefghigklmnopqrstuvwxyz1234567890</td>
+<td width="75%" style="word-wrap :break-word; overflow:hidden;">abcdefghigklmnopqrstuvwxyz1234567890</td>
+</tr>
+</table>
+26)巧妙clearfix解决css浮动问题
+如何用clear来解决css浮动问题，应该是众多前端开发人员所关心的问题，是clear还是clearfix，其实我们最终一个目的就是让浮动产生更多的影响，最为一个前端人员，我们有必要深入研究和探讨...
+万能float闭合，得知很多朋友都在使用下面的通用解决办法：
+1.clear{clear:both;height:0;overflow:hidden;}
+上诉办法是在需要清除浮动的地方加个div.clear或者br.clear，我们知道这样能解决基本清浮动问题。但是这种方法的最大缺陷就是改变了html结构，虽然只是加个div。
+ 
+最优浮动闭合方案（这是我们推荐的）：
+1.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+2.clearfix{*+height:1%;}
+用法很简单，在浮动元素的父云素上添加class="clearfix"。你会发现这个办法也有个弊端，但的确是小问题。改变css写法就ok了：
+1.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+2.clearfix{*+height:1%;}
+以上写法就避免了改变html结构，直接用css解决了。
+很拉轰的浮动闭合办法：
+1.clearfix{overflow:auto;_height:1%}
+这种办法是我看国外的一篇文章得到的方案，测试了，百试不爽，真的很简单，很给力。喜欢的同学也可以试试这个办法。
+ 
+这种方法是端友radom提供的，测试通过：
+1.clearfix{overflow:hidden;_zoom:1;}
+chrome下input[type=text]的placeholder不垂直居中的问题解决
+line-height: normal;   
+line-height: 22px\9;  
+去掉超链接或按钮点击时的虚框线
+a,a:hover,input,button{outline:none;blur:expression_r(this.onFocus=this.blur());} input:active {outline:none;}input::-moz-focus-inner{border:0px}
+ 
+修改select默认的样式
+select{background:none;width:400px;border:1pxsolid #d8d8d8;}
+option{vertical-align: middle;}

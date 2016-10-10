@@ -1,0 +1,22 @@
+1.清楚浮动——给浮动元素的父级加after伪元素并清除浮动如下：
+　　.clearfloat:after{
+　　content:””;
+　　display:block;
+　　height:0;
+　　clear:both;
+　　visibility:hidden;
+　　}
+　　.clearfloat{
+ 	/* 触发 hasLayout */ 
+　　zoom:1
+　　}
+　　　2.Ajax
+/*******首先创建对象********/
+Var ajax=null;
+if(window.XMLHttpRequest){ajax=new XMLHttpRequest();}
+else{ajax=new ActiveXObject(Microsoft.XMLHTTP)}
+Ajax.open(‘get,’url’,true);
+Ajax.send();
+Ajax.onreadystatechange=function(){
+　　If(Ajax.readyState==4){}
+}
