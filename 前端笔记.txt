@@ -1,22 +1,39 @@
-1.Çå³ş¸¡¶¯¡ª¡ª¸ø¸¡¶¯ÔªËØµÄ¸¸¼¶¼ÓafterÎ±ÔªËØ²¢Çå³ı¸¡¶¯ÈçÏÂ£º
-¡¡¡¡.clearfloat:after{
-¡¡¡¡content:¡±¡±;
-¡¡¡¡display:block;
-¡¡¡¡height:0;
-¡¡¡¡clear:both;
-¡¡¡¡visibility:hidden;
-¡¡¡¡}
-¡¡¡¡.clearfloat{
- 	/* ´¥·¢ hasLayout */ 
-¡¡¡¡zoom:1
-¡¡¡¡}
-¡¡¡¡¡¡2.Ajax
-/*******Ê×ÏÈ´´½¨¶ÔÏó********/
+1.æ¸…æ¥šæµ®åŠ¨â€”â€”ç»™æµ®åŠ¨å…ƒç´ çš„çˆ¶çº§åŠ afterä¼ªå…ƒç´ å¹¶æ¸…é™¤æµ®åŠ¨å¦‚ä¸‹ï¼š
+ã€€ã€€.clearfloat:after{
+ã€€ã€€content:â€â€;
+ã€€ã€€display:block;
+ã€€ã€€height:0;
+ã€€ã€€clear:both;
+ã€€ã€€visibility:hidden;
+ã€€ã€€}
+ã€€ã€€.clearfloat{
+ 	/* è§¦å‘ hasLayout */ 
+ã€€ã€€zoom:1
+ã€€ã€€}
+ã€€ã€€ã€€2.Ajax
+/*******é¦–å…ˆåˆ›å»ºå¯¹è±¡********/
 Var ajax=null;
 if(window.XMLHttpRequest){ajax=new XMLHttpRequest();}
 else{ajax=new ActiveXObject(Microsoft.XMLHTTP)}
-Ajax.open(¡®get,¡¯url¡¯,true);
+Ajax.open(â€˜get,â€™urlâ€™,true);
 Ajax.send();
 Ajax.onreadystatechange=function(){
-¡¡¡¡If(Ajax.readyState==4){}
+ã€€ã€€If(Ajax.readyState==4){}
+}
+3.jsåˆ¤æ–­è®¾å¤‡æµè§ˆå™¨
+function userAgentInit() {
+    var userAgent = window.navigator.userAgent.toLowerCase();
+    var agentState = 1;
+    var mobile = !!userAgent.match(/AppleWebKit.*Mobile.*/)||!!userAgent.match(/applewebkit.*mobile.*/)||!!userAgent.match(/AppleWebkit.*mobile.*/)||!!userAgent.match(/applewebkit.*Mobile.*/);//æ˜¯å¦ä¸ºç§»åŠ¨ç«¯
+    var microMessage = userAgent.match(/MicroMessenger/i) == "micromessenger";//æ˜¯å¦ä¸ºå¾®ä¿¡
+    if(mobile){
+        if(microMessage){
+            agentState = 1;//å¾®ä¿¡
+        }else{
+            agentState = 5;//wap
+        }
+    }else{
+        agentState = 3;//pc
+    }
+    return agentState;
 }
